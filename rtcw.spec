@@ -30,7 +30,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Return to Castle Wolfenstein for Linux.
 
 %description -l pl
-Return to Castle Wolfenstein dla linuksa.
+Return to Castle Wolfenstein dla Linuksa.
 
 %prep
 %setup -qcT
@@ -43,7 +43,7 @@ install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_gamedir}/{main,pb/{,h
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/rtcw
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/rtcw
-cp -rf main/* $RPM_BUILD_ROOT%{_gamedir}/main/
+cp -rf main/* $RPM_BUILD_ROOT%{_gamedir}/main
 install bin/Linux/x86/*.x86 $RPM_BUILD_ROOT%{_gamedir}
 install pb/*.so $RPM_BUILD_ROOT%{_gamedir}/pb
 install pb/htm/*.htm $RPM_BUILD_ROOT%{_gamedir}/pb/htm
