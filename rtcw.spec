@@ -1,5 +1,4 @@
 Summary:	Return to Castle Wolfenstein
-Summary(pl):	Return to Castle Wolfenstein
 Name:		rtcw
 Version:	1.41
 %define		_subver	3
