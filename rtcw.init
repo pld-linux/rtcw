@@ -4,7 +4,7 @@
 #		up the RTCW dedicated server
 #
 # chkconfig:	345 85 25
-# description:	Starts and stops the Quake3 dedicated server.
+# description:	Starts and stops the Return to Castle Wolfenstein dedicated server.
 #
 # processname:	rtcw
 
@@ -40,11 +40,11 @@ case "$action" in
   start)
 	if [ ! -f /var/lock/subsys/rtcw ]; then
 	    msg_starting "RTCW dedicated server"
-	    if [ ! -x /opt/rtcw/wolfded.x86 ]; then
+	    if [ ! -x /usr/share/rtcw/wolfded.x86 ]; then
 		fail
 		exit 
 	    fi
-	    screen -A -m -d -S rtcw su - -c "cd /opt/rtcw/ && ./wolfded.x86 ${RTCW_OPTS}"
+	    screen -A -m -d -S rtcw su - -c "cd /usr/share/rtcw/ && ./wolfded.x86 ${RTCW_OPTS}"
 	    touch /var/lock/subsys/rtcw && ok
 	else
 	    msg_already_running "RTCW dedicated server"
