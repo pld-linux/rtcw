@@ -1,4 +1,5 @@
 Summary:	Return to Castle Wolfenstein
+Summary(pl):	Return to Castle Wolfenstein (Powrót do zamku Wolfenstein)
 Name:		rtcw
 Version:	1.41
 %define		_subver	3
@@ -92,7 +93,7 @@ fi
 %doc RTCW-README-1.4.txt Docs
 %attr(755,root,root) %{_bindir}/rtcw*
 %attr(754,root,root) /etc/rc.d/init.d/rtcw
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/rtcw
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rtcw
 %dir %{_gamedir}
 %{_gamedir}/main
 %dir %{_gamedir}/pb
