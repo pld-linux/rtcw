@@ -66,10 +66,10 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/chkconfig --add q3ded
 
 echo ""
-echo "You need to copy pak0.pk3 from your Quake3 CD into %{_gamedir}/baseq3/."
-echo "Or if you have got a Windows installation of Q3 make a symlink to save space."
+echo "You need to copy pak*.pk3 from your RTCW CD into %{_gamedir}/main/."
+echo "Or if you have got a Windows installation of RTCW make a symlink to save space."
 echo ""
-echo "To start a dedicated server, run /etc/rc.d/init.d/q3ded start"
+##echo "To start a dedicated server, run /etc/rc.d/init.d/q3ded start"
 echo ""
 
 %preun
