@@ -1,0 +1,89 @@
+#!/bin/sh
+#
+# rtcw		This is the init script for starting
+#		up the RTCW dedicated server
+#
+# chkconfig:	345 85 25
+# description:	Starts and stops the Quake3 dedicated server.
+#
+# processname:	rtcw
+
+. /etc/rc.d/init.d/functions
+. /etc/sysconfig/network
+
+if [ -f /etc/sysconfig/rtcw ]; then
+	. /etc/sysconfig/rtcw
+else
+	nls "Error: %s not found" /etc/sysconfig/rtcw
+	nls " RTCW dedicated server can't be run."
+	exit 1
+fi
+
+if [ ! "RTCW_OPTS" ]; then
+	nls "Error: RTCW_OPTS not found or is empty"
+	nls " RTCW dedicated server can't be run."
+	exit 1
+fi
+
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network -a "$1" != stop -a "$1" != status -a "$1" != init ]; then
+		msg_network_down "RTCW dedicated server"
+		exit 1
+	fi
+else
+	exit 0
+fi
+
+action="$1"
+RETVAL=0
+case "$action" in
+  start)
+	if [ ! -f /var/lock/subsys/rtcw ]; then
+	    msg_starting "RTCW dedicated server"
+	    if [ ! -x /opt/rtcw/wolfded.x86 ]; then
+		fail
+		exit 
+	    fi
+	    screen -A -m -d -S rtcw su - -c "cd /opt/rtcw/ && ./wolfded.x86 ${RTCW_OPTS}"
+	    touch /var/lock/subsys/rtcw && ok
+	else
+	    msg_already_running "RTCW dedicated server"
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/rtcw ]; then
+	    msg_stopping "RTCW dedicated server"
+	    rm -f /var/lock/subsys/rtcw &>/dev/null
+	    SCREEN_PID=`screen -ls | grep rtcw | awk -F . '{print $1}' | sed -e s/.//`
+	    if [ ! -z "$SCREEN_PID" ]; then
+		RTCW_PID=`pstree -p ${SCREEN_PID} | sed -e 's:^.*rtcw:: ; s:(:: ; s:)::'`
+		if [ ! -z "$RTCW_PID" ]; then
+		    kill $RTCW_PID
+		    RETVAL=$?
+		    [ $RETVAL -eq 0 ] && ok
+		else
+		    fail
+		    RETVAL=1
+		fi
+	    else
+		fail
+		RETVAL=1
+	    fi
+	fi
+	exit $RETVAL
+	;;
+  status)
+	status rtcw
+	screen -ls | grep rtcw
+	exit $?
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|status}"
+	exit 3
+esac
+
+exit $RETVAL
