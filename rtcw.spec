@@ -48,11 +48,11 @@ sh %{SOURCE0} --tar xf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{rc.d/init.d,sysconfig},%{_gamedir}/{main,pb/{,htm}},%{_bindir}}
+install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_gamedir}/{main,pb/{,htm}},%{_bindir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/rtcw
-install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/rtcw
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/rtcw
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/rtcw
 cp -rf main/* $RPM_BUILD_ROOT%{_gamedir}/main
 install bin/Linux/x86/*.x86 $RPM_BUILD_ROOT%{_gamedir}
 install pb/*.so $RPM_BUILD_ROOT%{_gamedir}/pb
@@ -79,7 +79,7 @@ echo ""
 echo "You need to copy pak*.pk3 from RTCW CD installation into %{_gamedir}/main/."
 echo "Or if you have got a Windows installation of RTCW make a symlink to save space."
 echo ""
-echo "To start a dedicated server, run %{_sysconfdir}/rc.d/init.d/rtcw start"
+echo "To start a dedicated server, run /etc/rc.d/init.d/rtcw start"
 echo ""
 
 %preun
@@ -91,8 +91,8 @@ fi
 %defattr(644,root,root,755)
 %doc RTCW-README-1.4.txt Docs
 %attr(755,root,root) %{_bindir}/rtcw*
-%attr(754,root,root) %{_sysconfdir}/rc.d/init.d/rtcw
-%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/sysconfig/rtcw
+%attr(754,root,root) /etc/rc.d/init.d/rtcw
+%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/rtcw
 %dir %{_gamedir}
 %{_gamedir}/main
 %dir %{_gamedir}/pb
