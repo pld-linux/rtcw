@@ -3,14 +3,14 @@ Summary(pl):	Return to Castle Wolfenstein dla Linuksa
 Name:		rtcw
 Version:	1.41
 %define		_subver	3
-Release:	0.9
+Release:	0.99
 Vendor:		id Software
 License:	Q3A EULA, PB EULA
 Group:		Applications/Games
 Source0:	ftp://ftp.idsoftware.com/idstuff/wolf/linux/wolf-linux-%{version}-%{_subver}.x86.run
 # Source0-md5:	1db2a23a9548c8d84c8f9dbe87963842
-##Source1:	http://www.evenbalance.com/downloads/pbweb.x86
-##NoSource:	1
+Source1:	http://www.evenbalance.com/downloads/pbweb.x86
+NoSource:	1
 ##Source2:	q3ded.init
 ##Source3:	q3ded.sysconfig
 URL:		http://www.idsoftware.com/
@@ -40,13 +40,13 @@ sh %{SOURCE0} --tar xf
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/{rc.d/init.d,sysconfig},%{_gamedir}/{main,pb/{,htm}},%{_bindir}}
 
-###nstall %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
-##install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/rtcwd
-##install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/q3ded
-cp -rf main $RPM_BUILD_ROOT%{_gamedir}/main
+install %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/rtcw
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/rtcw
+cp -rf main/* $RPM_BUILD_ROOT%{_gamedir}/main/
 install bin/Linux/x86/*.x86 $RPM_BUILD_ROOT%{_gamedir}
-##install pb/*.so $RPM_BUILD_ROOT%{_gamedir}/pb
-##install pb/htm/*.htm $RPM_BUILD_ROOT%{_gamedir}/pb/htm
+install pb/*.so $RPM_BUILD_ROOT%{_gamedir}/pb
+install pb/htm/*.htm $RPM_BUILD_ROOT%{_gamedir}/pb/htm
 
 cat << EOF > $RPM_BUILD_ROOT%{_bindir}/rtcw-sp
 #!/bin/sh
@@ -81,13 +81,12 @@ fi
 %defattr(644,root,root,755)
 %doc RTCW-README-1.4.txt Docs
 %attr(755,root,root) %{_bindir}/rtcw*
-##%attr(754,root,root) /etc/rc.d/init.d/q3ded
-##%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/q3ded
+%attr(754,root,root) /etc/rc.d/init.d/rtcw
+%attr(640,root,root) %config(noreplace) %verify(not md5 size mtime) /etc/sysconfig/rtcw
 %dir %{_gamedir}
 %{_gamedir}/main
-##%dir %{_gamedir}/pb
-##%{_gamedir}/pb/htm
-##%attr(755,root,root) %{_gamedir}/pb/*.so
-##%attr(754,root,games) %{_gamedir}/q3ded
+%dir %{_gamedir}/pb
+%{_gamedir}/pb/htm
+%attr(755,root,root) %{_gamedir}/pb/*.so
 %attr(754,root,games) %{_gamedir}/wolf*x86
-##%attr(755,root,root) %{_bindir}/pbweb.x86
+%attr(755,root,root) %{_bindir}/pbweb.x86
