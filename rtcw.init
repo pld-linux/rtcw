@@ -42,7 +42,7 @@ case "$action" in
 	    msg_starting "RTCW dedicated server"
 	    if [ ! -x /usr/share/rtcw/wolfded.x86 ]; then
 		fail
-		exit 
+		exit
 	    fi
 	    screen -A -m -d -S rtcw su - -c "cd /usr/share/rtcw/ && ./wolfded.x86 ${RTCW_OPTS}"
 	    touch /var/lock/subsys/rtcw && ok
