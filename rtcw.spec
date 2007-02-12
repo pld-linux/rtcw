@@ -1,5 +1,5 @@
 Summary:	Return to Castle Wolfenstein
-Summary(pl):	Return to Castle Wolfenstein (Powrót do zamku Wolfenstein)
+Summary(pl.UTF-8):   Return to Castle Wolfenstein (PowrÃ³t do zamku Wolfenstein)
 Name:		rtcw
 Version:	1.41
 %define		_subver	3
@@ -34,13 +34,13 @@ Battling alone, you're on an intense mission to pierce the
 black heart of the Third Reich and stop Himmler -- or die
 trying.
 
-%description -l pl
-Druga Wojna ¦wiatowa szaleje, a nacje upadaj±. Dowódca SS,
-Heinrich Himmler, w pe³ni wspierany przez Adolfa Hitlera,
-prowadzi tajemnicze eksperymenty ³±cz±ce naukê z okultyzmem.
-Ich celem jest stworzenie armii zdolnej do zadania ca³kowitej
-klêski wojskom alianckim. Twoje zadanie to przebiæ czarne
-serce Trzeciej Rzeszy i powstrzymaæ Himmlera. Albo tego
+%description -l pl.UTF-8
+Druga Wojna Åšwiatowa szaleje, a nacje upadajÄ…. DowÃ³dca SS,
+Heinrich Himmler, w peÅ‚ni wspierany przez Adolfa Hitlera,
+prowadzi tajemnicze eksperymenty Å‚Ä…czÄ…ce naukÄ™ z okultyzmem.
+Ich celem jest stworzenie armii zdolnej do zadania caÅ‚kowitej
+klÄ™ski wojskom alianckim. Twoje zadanie to przebiÄ‡ czarne
+serce Trzeciej Rzeszy i powstrzymaÄ‡ Himmlera. Albo tego
 dokonasz, albo zginiesz na polu walki.
 
 %prep
