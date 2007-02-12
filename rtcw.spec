@@ -1,5 +1,5 @@
 Summary:	Return to Castle Wolfenstein
-Summary(pl.UTF-8):   Return to Castle Wolfenstein (Powrót do zamku Wolfenstein)
+Summary(pl.UTF-8):	Return to Castle Wolfenstein (Powrót do zamku Wolfenstein)
 Name:		rtcw
 Version:	1.41
 %define		_subver	3
