@@ -21,8 +21,6 @@ Requires:	screen
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		no_install_post_strip	1
-
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
 %define		_gamedir	%{_datadir}/%{name}
 
